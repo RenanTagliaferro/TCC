@@ -1,25 +1,22 @@
-using Microsoft.AspNetCore.Mvc;
 using BankingApi.Models;
 using BankingApi.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BankingApi.Controllers
+[ApiController]
+[Route("banking")]
+public class ClienteController : ControllerBase
 {
-    [ApiController]
-    [Route("banking")]
-    public class ClienteController : ControllerBase
+    private readonly ITransferService _transferService;
+
+    public ClienteController(ITransferService transferService)
     {
-        private readonly ITransferService _transferService;
+        _transferService = transferService;
+    }
 
-        public ClienteController(ITransferService transferService)
-        {
-            _transferService = transferService;
-        }
-
-        [HttpGet("transferencia")]
-        public ActionResult<Transferencia> Transferencia()
-        {
-            var transferencia = _transferService.FazerTransferencia();
-            return Ok(transferencia);
-        }
+    [HttpGet("transferencia")]
+    public ActionResult<Transferencia> Transferencia([FromQuery] int id,string nome)
+    {
+        var transferencia = _transferService.FazerTransferencia();
+        return Ok(transferencia);
     }
 }

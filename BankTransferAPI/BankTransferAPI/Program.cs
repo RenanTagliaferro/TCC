@@ -1,25 +1,61 @@
-﻿using BankingApi.Services;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using BankingApi.Services;
 
-namespace BankTransferAPI
+namespace BankingApi
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var _sp = new ServiceCollection();
-            //services
-            _sp.AddTransient<TransferenciaBancariaService>();
-
-
-            var _sc = _sp.BuildServiceProvider();
-
-
-            var _transferService = _sc.GetService<TransferenciaBancariaService>();
-
-            var transf = _transferService.FazerTransferencia();
-
-            Console.WriteLine($"Transferencia feita, Cliente:{transf.Cliente.Nome}, ID: {transf.Cliente.Id} Valor:R${transf.Valor}");
+            var host = CreateHostBuilder(args).Build();
+            host.Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureServices((context, services) =>
+        {
+            services.AddControllers();
+
+            services.AddTransient<ITransferService, TransferenciaBancariaService>();
+            services.AddControllers().AddApplicationPart(typeof(ClienteController).Assembly);
+
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen(options =>
+            {
+                options.EnableAnnotations();
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Banking API",
+                    Version = "v1",
+                    Description = "Predo Caixa Pequena",
+                });
+            });
+        })
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.Configure(app =>
+            {
+                // Swagger first
+                app.UseSwagger();
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking API v1");
+                    c.RoutePrefix = string.Empty; 
+                });
+                app.UseRouting();
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
+            });
+        });
+
+
     }
 }
