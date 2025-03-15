@@ -18,7 +18,7 @@ namespace BankingApi.Services
 
         public TransferenciaBancariaService()
         {
-            var credentials = new BasicAWSCredentials("YOUR_ACCESS_KEY", "YOUR_SECRET_KEY");
+            var credentials = new BasicAWSCredentials("AKIAXQIP757HT6N4SFSQ", "MdtdrdZMi348JZ52cVrKhoSH4H/kzYU7YEQBkuEd");
 
             _dynamoDbClient = new AmazonDynamoDBClient(credentials, Amazon.RegionEndpoint.USEast1);
 
