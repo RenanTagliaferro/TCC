@@ -14,9 +14,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet("transferencia")]
-    public ActionResult<Transferencia> Transferencia([FromQuery] int id,string nome)
+    public ActionResult<Transferencia> Transferencia([FromQuery] int idOrigem,string contaOrigem, int idDestinatario, string contaDestinatario)
     {
-        var transferencia = _transferService.FazerTransferencia();
+        var transferencia = _transferService.FazerTransferencia(idOrigem, contaOrigem, idDestinatario, contaDestinatario);
         return Ok(transferencia);
     }
 }

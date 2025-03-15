@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "F6Z0CmNteu0=",
+  "dgSpecHash": "9o1SIpzHmvw=",
   "success": true,
   "projectFilePath": "C:\\Users\\renan\\Desktop\\CompSci\\Mackenzie\\TCC\\Transferencia Bancaria\\BankTransferAPI\\BankTransferAPI\\BankTransferAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\renan\\.nuget\\packages\\awssdk.core\\3.7.402.19\\awssdk.core.3.7.402.19.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.406.1\\awssdk.dynamodbv2.3.7.406.1.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\bogus\\35.6.2\\bogus.35.6.2.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.3.0\\microsoft.aspnetcore.authentication.core.2.3.0.nupkg.sha512",

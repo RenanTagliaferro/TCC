@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AWSSDK.DynamoDBv2": {
+              "target": "Package",
+              "version": "[3.7.406.1, )"
+            },
             "Bogus": {
               "target": "Package",
               "version": "[35.6.2, )"
