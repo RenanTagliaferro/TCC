@@ -27,12 +27,24 @@ namespace BankingApi.Services
 
         public async Task<Transferencia> FazerTransferencia(int idOrigem, string contaOrigem, int idDestinatario, string contaDestinatario)
         {
-            var origemItem = await _clienteTable.GetItemAsync(idOrigem.ToString(), contaOrigem);
-            if (origemItem == null)
-                throw new Exception("Conta de origem não encontrada.");
-
+            try
+            {
+                var origemItem = await _clienteTable.GetItemAsync(idOrigem, contaOrigem);
+                if (origemItem == null)
+                    throw new Exception("Conta de origem não encontrada.");
+            }
+            catch (AmazonDynamoDBException ex)
+            {
+                Console.WriteLine($"DynamoDB error: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                throw;
+            }
             // Retrieve destination account
-            var destinoItem = await _clienteTable.GetItemAsync(idDestinatario.ToString(), contaDestinatario);
+            var destinoItem = await _clienteTable.GetItemAsync(idDestinatario, contaDestinatario);
             if (destinoItem == null)
 
 

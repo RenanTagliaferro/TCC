@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "BankTransferAPI/1.0.0": {
         "dependencies": {
+          "AWSSDK.DynamoDBv2": "3.7.406.1",
           "Bogus": "35.6.2",
           "Microsoft.AspNetCore.Mvc.Core": "2.3.0",
           "Swashbuckle.AspNetCore": "7.3.1",
@@ -16,6 +17,25 @@
         },
         "runtime": {
           "BankTransferAPI.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.402.19": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.402.19"
+          }
+        }
+      },
+      "AWSSDK.DynamoDBv2/3.7.406.1": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.402.19"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.DynamoDBv2.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.406.1"
+          }
         }
       },
       "Bogus/35.6.2": {
@@ -698,6 +718,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.402.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QNxPperAlN9LyZQ3XwQtGI3I3XeULucGzqI3PngR6jxNvwJTD++YyklL/6o2Q3CRfVmnj7noXh+nhiXuQbA/Ig==",
+      "path": "awssdk.core/3.7.402.19",
+      "hashPath": "awssdk.core.3.7.402.19.nupkg.sha512"
+    },
+    "AWSSDK.DynamoDBv2/3.7.406.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ALB8Q1f9TiXDpfXrSSt3+EkpJR0DTD7UC8EwrUKyCF1QVQff1ChvbSQLbHmRIoCgE2MG2X10c7GRiS+KNAS33A==",
+      "path": "awssdk.dynamodbv2/3.7.406.1",
+      "hashPath": "awssdk.dynamodbv2.3.7.406.1.nupkg.sha512"
     },
     "Bogus/35.6.2": {
       "type": "package",
