@@ -3,12 +3,13 @@ using BankingApi.Models;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Runtime;
+using DotNetEnv; // Import the DotNetEnv namespace
 
 namespace BankingApi.Services
 {
     public interface ITransferService
     {
-        Task<Transferencia> FazerTransferencia(int idOrigem, string contaOrigem, int idDestinatario, string contaDestinatario);
+        Task<Transferencia> FazerTransferencia(int? idOrigem, string contaOrigem, int? idDestinatario, string contaDestinatario);
     }
 
     public class TransferenciaBancariaService : ITransferService
@@ -18,20 +19,41 @@ namespace BankingApi.Services
 
         public TransferenciaBancariaService()
         {
-            var credentials = new BasicAWSCredentials("AKIAXQIP757HT6N4SFSQ", "MdtdrdZMi348JZ52cVrKhoSH4H/kzYU7YEQBkuEd");
+            #if DEBUG
+                Env.Load(@"..\..\..\credentials.env");
+            #endif
 
-            _dynamoDbClient = new AmazonDynamoDBClient(credentials, Amazon.RegionEndpoint.USEast1);
+            var awsAccessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+            var awsSecretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+            var region = Environment.GetEnvironmentVariable("AWS_REGION");
 
+            if (string.IsNullOrEmpty(awsAccessKeyId) || string.IsNullOrEmpty(awsSecretAccessKey) || string.IsNullOrEmpty(region))
+            {
+                throw new Exception("AWS credentials nao setadas");
+            }
+
+            var credentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey);
+            var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
+
+            _dynamoDbClient = new AmazonDynamoDBClient(credentials, regionEndpoint);
             _clienteTable = Table.LoadTable(_dynamoDbClient, "cliente");
         }
 
-        public async Task<Transferencia> FazerTransferencia(int idOrigem, string contaOrigem, int idDestinatario, string contaDestinatario)
+        public async Task<Transferencia> FazerTransferencia(int? idOrigem, string contaOrigem, int? idDestinatario, string contaDestinatario)
         {
+
+            if((idOrigem == null && (contaOrigem == null || contaOrigem == string.Empty))
+               || (idDestinatario == null && (contaDestinatario == null || contaDestinatario == string.Empty)))
+                throw new Exception("Necessario preencher pelo menos id do cliente ou conta na origem e no destino");
             try
             {
                 var origemItem = await _clienteTable.GetItemAsync(idOrigem, contaOrigem);
                 if (origemItem == null)
                     throw new Exception("Conta de origem não encontrada.");
+
+                var destinoItem = await _clienteTable.GetItemAsync(idDestinatario, contaDestinatario);
+                if (destinoItem == null)
+                    throw new Exception("Conta de destino não encontrada.");
             }
             catch (AmazonDynamoDBException ex)
             {
@@ -43,12 +65,7 @@ namespace BankingApi.Services
                 Console.WriteLine($"Unexpected error: {ex.Message}");
                 throw;
             }
-            // Retrieve destination account
-            var destinoItem = await _clienteTable.GetItemAsync(idDestinatario, contaDestinatario);
-            if (destinoItem == null)
-
-
-                throw new Exception("Conta de destino não encontrada.");
+           
             //TODO: trocar dados mock por dados do DynamoDB
             var clienteFaker = new Faker<Cliente>()
                 .RuleFor(c => c.Id, f => f.Random.Int(1, 1000))
