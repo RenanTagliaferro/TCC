@@ -3,3 +3,6 @@
 ################################################################################
 
 /BankTransferAPI/.vs/BankTransferAPI
+/BankTransferAPI/BankTransferAPI/Enviroment.env
+/BankTransferAPI/BankTransferAPI/.env
+/BankTransferAPI/BankTransferAPI/credentials.env
