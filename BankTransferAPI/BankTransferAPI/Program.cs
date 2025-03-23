@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using BankingApi.Services;
+using BankTransferAPI.Interfaces;
+using BankingApi.Repositories;
 
 namespace BankingApi
 {
@@ -22,6 +24,7 @@ namespace BankingApi
             services.AddControllers();
 
             services.AddTransient<ITransferService, TransferenciaBancariaService>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddControllers().AddApplicationPart(typeof(ClienteController).Assembly);
 
             services.AddEndpointsApiExplorer();

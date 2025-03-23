@@ -3,21 +3,20 @@ using BankingApi.Models;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Runtime;
-using DotNetEnv; // Import the DotNetEnv namespace
+using DotNetEnv;
+using BankingApi.Repositories;
+using BankTransferAPI.Interfaces;
 
 namespace BankingApi.Services
 {
-    public interface ITransferService
-    {
-        Task<Transferencia> FazerTransferencia(int? idOrigem, string contaOrigem, int? idDestinatario, string contaDestinatario);
-    }
-
     public class TransferenciaBancariaService : ITransferService
     {
         private readonly AmazonDynamoDBClient _dynamoDbClient;
-        private readonly Table _clienteTable;
+        private readonly ITransferRepository _transferRepo;
 
-        public TransferenciaBancariaService()
+        public TransferenciaBancariaService(
+            ITransferRepository transferRepo,
+            AmazonDynamoDBClient dynamoDbClient)
         {
             #if DEBUG
                 Env.Load(@"..\..\..\credentials.env");
@@ -36,50 +35,52 @@ namespace BankingApi.Services
             var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
 
             _dynamoDbClient = new AmazonDynamoDBClient(credentials, regionEndpoint);
-            _clienteTable = Table.LoadTable(_dynamoDbClient, "cliente");
+            _transferRepo = transferRepo;
         }
 
-        public async Task<Transferencia> FazerTransferencia(int? idOrigem, string contaOrigem, int? idDestinatario, string contaDestinatario)
+        public async Task<Transferencia> FazerTransferencia(string contaOrigem,string contaDestinatario,decimal valor)
         {
 
-            if((idOrigem == null && (contaOrigem == null || contaOrigem == string.Empty))
-               || (idDestinatario == null && (contaDestinatario == null || contaDestinatario == string.Empty)))
-                throw new Exception("Necessario preencher pelo menos id do cliente ou conta na origem e no destino");
-            try
-            {
-                var origemItem = await _clienteTable.GetItemAsync(idOrigem, contaOrigem);
-                if (origemItem == null)
-                    throw new Exception("Conta de origem não encontrada.");
+            if((contaOrigem == null || contaOrigem == string.Empty)
+               || (contaDestinatario == null || contaDestinatario == string.Empty))
+                throw new Exception("Necessario conta na origem e no destino");
 
-                var destinoItem = await _clienteTable.GetItemAsync(idDestinatario, contaDestinatario);
-                if (destinoItem == null)
-                    throw new Exception("Conta de destino não encontrada.");
-            }
-            catch (AmazonDynamoDBException ex)
-            {
-                Console.WriteLine($"DynamoDB error: {ex.Message}");
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
-                throw;
-            }
-           
-            //TODO: trocar dados mock por dados do DynamoDB
-            var clienteFaker = new Faker<Cliente>()
-                .RuleFor(c => c.Id, f => f.Random.Int(1, 1000))
-                .RuleFor(c => c.Nome, f => f.Person.FullName);
+            var transferID = Guid.NewGuid().ToString();
+            var sk = string.Concat(contaOrigem,"-", contaDestinatario);
 
-            var cliente = clienteFaker.Generate();
-
-            var valor = new Faker().Random.Decimal(10, 1000);
-
-            //TODO: deixar metodo como void e fazer enviar mensagem pro SQS
-            return new Transferencia
+            var transfer = new Transferencia
             {
-                Valor = valor
+                PK = transferID,
+                SK = sk,
+                Valor = valor,
+                IdContaDestino = contaOrigem,
+                IdContaOrigem = contaDestinatario
             };
+
+            await  _transferRepo.WriteTransferAsync(transfer);
+
+            return transfer;
+            //try
+            //{
+            //    var origemItem = await _clienteTable.GetItemAsync(idOrigem, contaOrigem);
+            //    if (origemItem == null)
+            //        throw new Exception("Conta de origem não encontrada.");
+
+            //    var destinoItem = await _clienteTable.GetItemAsync(idDestinatario, contaDestinatario);
+            //    if (destinoItem == null)
+            //        throw new Exception("Conta de destino não encontrada.");
+            //}
+            //catch (AmazonDynamoDBException ex)
+            //{
+            //    Console.WriteLine($"DynamoDB error: {ex.Message}");
+            //    throw;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"Unexpected error: {ex.Message}");
+            //    throw;
+            //}
+
         }
     }
 }

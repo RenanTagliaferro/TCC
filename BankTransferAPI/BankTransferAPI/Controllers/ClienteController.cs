@@ -1,5 +1,6 @@
 using BankingApi.Models;
 using BankingApi.Services;
+using BankTransferAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -14,9 +15,9 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet("transferencia")]
-    public ActionResult<Transferencia> Transferencia([FromQuery] int idOrigem,string contaOrigem, int idDestinatario, string contaDestinatario)
+    public ActionResult<Transferencia> Transferencia([FromQuery] string contaOrigem, string contaDestinatario, decimal valor)
     {
-        var transferencia = _transferService.FazerTransferencia(idOrigem, contaOrigem, idDestinatario, contaDestinatario);
+        var transferencia = _transferService.FazerTransferencia( contaOrigem, contaDestinatario,valor);
         return Ok(transferencia);
     }
 }
