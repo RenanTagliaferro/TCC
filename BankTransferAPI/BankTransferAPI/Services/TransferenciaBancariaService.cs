@@ -78,7 +78,6 @@ namespace BankingApi.Services
             //TODO: deixar metodo como void e fazer enviar mensagem pro SQS
             return new Transferencia
             {
-                Cliente = cliente,
                 Valor = valor
             };
         }
