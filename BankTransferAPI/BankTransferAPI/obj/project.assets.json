@@ -2,7 +2,33 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "AWSSDK.Core/3.7.402.19": {
+      "Amazon.Lambda.Core/2.5.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Amazon.Lambda.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Amazon.Lambda.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Amazon.Lambda.SNSEvents/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Amazon.Lambda.SNSEvents.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Amazon.Lambda.SNSEvents.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AWSSDK.Core/3.7.402.24": {
         "type": "package",
         "compile": {
           "lib/net8.0/AWSSDK.Core.dll": {
@@ -27,6 +53,22 @@
         },
         "runtime": {
           "lib/net8.0/AWSSDK.DynamoDBv2.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "AWSSDK.SimpleNotificationService/3.7.400.118": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.402.24, 4.0.0)"
+        },
+        "compile": {
+          "lib/net8.0/AWSSDK.SimpleNotificationService.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.SimpleNotificationService.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -2136,15 +2178,48 @@
     }
   },
   "libraries": {
-    "AWSSDK.Core/3.7.402.19": {
-      "sha512": "QNxPperAlN9LyZQ3XwQtGI3I3XeULucGzqI3PngR6jxNvwJTD++YyklL/6o2Q3CRfVmnj7noXh+nhiXuQbA/Ig==",
+    "Amazon.Lambda.Core/2.5.1": {
+      "sha512": "84MTU67ZU+KMaT8V2C/76UCu3J77hTrDpiThlvUQLiNQMtpfF+9yHdVC4GEtoWGOGtItOaoBB0sdEE2V13qL9Q==",
       "type": "package",
-      "path": "awssdk.core/3.7.402.19",
+      "path": "amazon.lambda.core/2.5.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "amazon.lambda.core.2.5.1.nupkg.sha512",
+        "amazon.lambda.core.nuspec",
+        "lib/net6.0/Amazon.Lambda.Core.dll",
+        "lib/net6.0/Amazon.Lambda.Core.xml",
+        "lib/net8.0/Amazon.Lambda.Core.dll",
+        "lib/net8.0/Amazon.Lambda.Core.xml",
+        "lib/netstandard2.0/Amazon.Lambda.Core.dll",
+        "lib/netstandard2.0/Amazon.Lambda.Core.xml"
+      ]
+    },
+    "Amazon.Lambda.SNSEvents/2.1.0": {
+      "sha512": "w2PKM5eQ6DNCR07H6SwHdcPXAr/qKQhNoAD+8bWydpgh4QdS2O4heo9vxhxn1g5FMSKeOxVa2zMKUZ9xeSYPZw==",
+      "type": "package",
+      "path": "amazon.lambda.snsevents/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "amazon.lambda.snsevents.2.1.0.nupkg.sha512",
+        "amazon.lambda.snsevents.nuspec",
+        "lib/net8.0/Amazon.Lambda.SNSEvents.dll",
+        "lib/net8.0/Amazon.Lambda.SNSEvents.xml",
+        "lib/netstandard2.0/Amazon.Lambda.SNSEvents.dll",
+        "lib/netstandard2.0/Amazon.Lambda.SNSEvents.xml"
+      ]
+    },
+    "AWSSDK.Core/3.7.402.24": {
+      "sha512": "xcUx7ntQE7DYcdlL0/IPb4DXPpQfH/OL11M9Swcm6iDPhX1S/Hu0neWVf5gBuRe58Sei0cX24qKjol+mDhcNwA==",
+      "type": "package",
+      "path": "awssdk.core/3.7.402.24",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.7.402.19.nupkg.sha512",
+        "awssdk.core.3.7.402.24.nupkg.sha512",
         "awssdk.core.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.Core.dll",
@@ -2193,6 +2268,38 @@
         "lib/netstandard2.0/AWSSDK.DynamoDBv2.dll",
         "lib/netstandard2.0/AWSSDK.DynamoDBv2.pdb",
         "lib/netstandard2.0/AWSSDK.DynamoDBv2.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "AWSSDK.SimpleNotificationService/3.7.400.118": {
+      "sha512": "ccc/rSr5mtV/wcGz6Zj+VM1INevC6e8XQhh8Uj7BK+OgF900K7/RKIHmm/yLv3MKGTLpf6r/4gM7L3CPUerGRg==",
+      "type": "package",
+      "path": "awssdk.simplenotificationservice/3.7.400.118",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.SimpleNotificationService.CodeAnalysis.dll",
+        "analyzers/dotnet/cs/SharedAnalysisCode.dll",
+        "awssdk.simplenotificationservice.3.7.400.118.nupkg.sha512",
+        "awssdk.simplenotificationservice.nuspec",
+        "images/AWSLogo.png",
+        "lib/net35/AWSSDK.SimpleNotificationService.dll",
+        "lib/net35/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net35/AWSSDK.SimpleNotificationService.xml",
+        "lib/net45/AWSSDK.SimpleNotificationService.dll",
+        "lib/net45/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net45/AWSSDK.SimpleNotificationService.xml",
+        "lib/net8.0/AWSSDK.SimpleNotificationService.dll",
+        "lib/net8.0/AWSSDK.SimpleNotificationService.pdb",
+        "lib/net8.0/AWSSDK.SimpleNotificationService.xml",
+        "lib/netcoreapp3.1/AWSSDK.SimpleNotificationService.dll",
+        "lib/netcoreapp3.1/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netcoreapp3.1/AWSSDK.SimpleNotificationService.xml",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.dll",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.pdb",
+        "lib/netstandard2.0/AWSSDK.SimpleNotificationService.xml",
         "tools/install.ps1",
         "tools/uninstall.ps1"
       ]
@@ -6758,6 +6865,9 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "AWSSDK.DynamoDBv2 >= 3.7.406.1",
+      "AWSSDK.SimpleNotificationService >= 3.7.400.118",
+      "Amazon.Lambda.Core >= 2.5.1",
+      "Amazon.Lambda.SNSEvents >= 2.1.0",
       "Bogus >= 35.6.2",
       "DotNetEnv >= 3.1.1",
       "Microsoft.AspNetCore.Mvc.Core >= 2.3.0",
@@ -6819,6 +6929,18 @@
           "AWSSDK.DynamoDBv2": {
             "target": "Package",
             "version": "[3.7.406.1, )"
+          },
+          "AWSSDK.SimpleNotificationService": {
+            "target": "Package",
+            "version": "[3.7.400.118, )"
+          },
+          "Amazon.Lambda.Core": {
+            "target": "Package",
+            "version": "[2.5.1, )"
+          },
+          "Amazon.Lambda.SNSEvents": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           },
           "Bogus": {
             "target": "Package",

@@ -54,6 +54,18 @@
               "target": "Package",
               "version": "[3.7.406.1, )"
             },
+            "AWSSDK.SimpleNotificationService": {
+              "target": "Package",
+              "version": "[3.7.400.118, )"
+            },
+            "Amazon.Lambda.Core": {
+              "target": "Package",
+              "version": "[2.5.1, )"
+            },
+            "Amazon.Lambda.SNSEvents": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Bogus": {
               "target": "Package",
               "version": "[35.6.2, )"

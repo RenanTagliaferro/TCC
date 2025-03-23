@@ -6,6 +6,9 @@ using Microsoft.OpenApi.Models;
 using BankingApi.Services;
 using BankTransferAPI.Interfaces;
 using BankingApi.Repositories;
+using Amazon.DynamoDBv2;
+using Amazon.SimpleNotificationService;
+using BankTransferAPI.Repositories;
 
 namespace BankingApi
 {
@@ -18,12 +21,12 @@ namespace BankingApi
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
+        Host.CreateDefaultBuilder(args)
         .ConfigureServices((context, services) =>
         {
             services.AddControllers();
-
             services.AddTransient<ITransferService, TransferenciaBancariaService>();
+            services.AddTransient<ITransferRepository, TransferRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddControllers().AddApplicationPart(typeof(ClienteController).Assembly);
 

@@ -1,11 +1,11 @@
-using Bogus;
 using BankingApi.Models;
 using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Runtime;
 using DotNetEnv;
-using BankingApi.Repositories;
 using BankTransferAPI.Interfaces;
+using Amazon.SimpleNotificationService.Model;
+using System.Text.Json;
+using Amazon.SimpleNotificationService;
 
 namespace BankingApi.Services
 {
@@ -13,10 +13,15 @@ namespace BankingApi.Services
     {
         private readonly AmazonDynamoDBClient _dynamoDbClient;
         private readonly ITransferRepository _transferRepo;
+        private readonly IAmazonSimpleNotificationService _snsClient;
+        private readonly string _snsTopicArn = "arn:aws:sns:us-east-1:515966496719:topic-transfer";
+
 
         public TransferenciaBancariaService(
             ITransferRepository transferRepo,
-            AmazonDynamoDBClient dynamoDbClient)
+            AmazonDynamoDBClient dynamoDbClient,
+            IAmazonSimpleNotificationService snsClient,
+            string snsTopicArn)
         {
             #if DEBUG
                 Env.Load(@"..\..\..\credentials.env");
@@ -36,6 +41,8 @@ namespace BankingApi.Services
 
             _dynamoDbClient = new AmazonDynamoDBClient(credentials, regionEndpoint);
             _transferRepo = transferRepo;
+            _snsClient = snsClient;
+            _snsTopicArn = snsTopicArn;
         }
 
         public async Task<Transferencia> FazerTransferencia(string contaOrigem,string contaDestinatario,decimal valor)
@@ -57,30 +64,23 @@ namespace BankingApi.Services
                 IdContaOrigem = contaDestinatario
             };
 
-            await  _transferRepo.WriteTransferAsync(transfer);
+            await _transferRepo.WriteTransferAsync(transfer);
+
+            await PublishToSns(transfer);
 
             return transfer;
-            //try
-            //{
-            //    var origemItem = await _clienteTable.GetItemAsync(idOrigem, contaOrigem);
-            //    if (origemItem == null)
-            //        throw new Exception("Conta de origem não encontrada.");
+        }
+        private async Task PublishToSns(Transferencia transferencia)
+        {
+            var message = JsonSerializer.Serialize(transferencia);
 
-            //    var destinoItem = await _clienteTable.GetItemAsync(idDestinatario, contaDestinatario);
-            //    if (destinoItem == null)
-            //        throw new Exception("Conta de destino não encontrada.");
-            //}
-            //catch (AmazonDynamoDBException ex)
-            //{
-            //    Console.WriteLine($"DynamoDB error: {ex.Message}");
-            //    throw;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"Unexpected error: {ex.Message}");
-            //    throw;
-            //}
+            var request = new PublishRequest
+            {
+                TopicArn = _snsTopicArn,
+                Message = message
+            };
 
+            await _snsClient.PublishAsync(request);
         }
     }
 }

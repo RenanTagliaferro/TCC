@@ -1,6 +1,7 @@
 ﻿using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2;
 using BankingApi.Models;
+using Amazon.DynamoDBv2.Model;
 namespace BankingApi.Repositories
 {
     public class ClienteRepository : IClienteRepository
@@ -15,21 +16,67 @@ namespace BankingApi.Repositories
         }
 
         // Implement the interface method to retrieve a cliente
-        public async Task<Cliente> GetClienteByAccountAsync(int id, string conta)
+        public async Task<Cliente> GetClienteByAccountAsync(string conta)
         {
-            var item = await _clienteTable.GetItemAsync(id, conta);
-            if (item == null)
-                return null;
 
-            var cliente = new Cliente
+            var scanRequest = new ScanRequest
             {
-                Id = item["PK"].AsInt(),
-                Conta = item["conta"].AsString(),
-                Nome = item["nome"].AsString(),
-                ValorEmConta = item["valor"].AsDecimal()
+                TableName = "cliente",  
+                FilterExpression = "SK = :skValue",
+                ExpressionAttributeValues = new Dictionary<string, AttributeValue>
+                {
+                    { ":skValue", new AttributeValue { S = conta } }
+                }
             };
 
-            return cliente;
+            var scanResponse = await _dynamoDbClient.ScanAsync(scanRequest);
+
+            if (scanResponse.Items.Count > 0)
+            {
+                var firstItem = scanResponse.Items.First();
+
+                var cliente = new Cliente
+                {
+                    Id = int.Parse(firstItem["PK"].S),
+                    Nome = firstItem["Nome"].S,
+                    Conta = firstItem["Conta"].S,
+                    ValorEmConta = decimal.Parse(firstItem["valor"].N)
+                };
+
+                return cliente;
+            }
+            return null;
+        }
+
+        public async Task<bool> UpdateCliente(Cliente cliente)
+        {
+            var updateRequest = new UpdateItemRequest
+            {
+                TableName = "YourTableName",
+                Key = new Dictionary<string, AttributeValue>
+                {
+                    { "PK", new AttributeValue { N = cliente.Id.ToString() } },
+                    { "SK", new AttributeValue { S = cliente.Conta } }
+                },
+                UpdateExpression = "SET nome = :nome, valor = :valorEmConta",
+                ExpressionAttributeValues = new Dictionary<string, AttributeValue>
+                {
+                    { ":nome", new AttributeValue { S = cliente.Nome } },
+                    { ":valorEmConta", new AttributeValue { N = cliente.ValorEmConta.ToString() } }
+                },
+                ReturnValues = "ALL_NEW"
+            };
+
+            try
+            {
+                var updateResponse = await _dynamoDbClient.UpdateItemAsync(updateRequest);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error de update: {ex.Message}");
+                return false;
+            }
         }
     }
 }
