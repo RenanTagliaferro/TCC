@@ -48,7 +48,7 @@ namespace BankingApi.Repositories
             return null;
         }
 
-        public async Task<bool> UpdateCliente(Cliente cliente)
+        public async Task<bool> UpdateClienteAsync(Cliente cliente)
         {
             var updateRequest = new UpdateItemRequest
             {

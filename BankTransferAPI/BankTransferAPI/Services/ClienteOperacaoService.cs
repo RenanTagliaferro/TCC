@@ -20,40 +20,48 @@ namespace BankTransferAPI.Services
         private readonly AmazonDynamoDBClient _dynamoDbClient;
 
         public ClienteOperacaoService(
-            AmazonDynamoDBClient dynamoDbClient, 
-            IClienteRepository clienteRepo,
-            IAmazonSimpleNotificationService snsClient,
-            string snsTopicArn)
+     AmazonDynamoDBClient? dynamoDbClient,
+     IClienteRepository clienteRepo,
+     IAmazonSimpleNotificationService snsClient,
+     string snsTopicArn)
         {
-            
-    #if DEBUG
+#if DEBUG
             Env.Load(@"..\..\..\credentials.env");
-    #endif
+#endif
 
-            var awsAccessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
-            var awsSecretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
-            var region = Environment.GetEnvironmentVariable("AWS_REGION");
-
-            if (string.IsNullOrEmpty(awsAccessKeyId) || string.IsNullOrEmpty(awsSecretAccessKey) || string.IsNullOrEmpty(region))
+            if (dynamoDbClient == null)
             {
-                throw new Exception("AWS credentials nao setadas");
+                var awsAccessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+                var awsSecretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+                var region = Environment.GetEnvironmentVariable("AWS_REGION");
+
+                if (string.IsNullOrEmpty(awsAccessKeyId) || string.IsNullOrEmpty(awsSecretAccessKey) || string.IsNullOrEmpty(region))
+                {
+                    throw new Exception("AWS credentials nao setadas");
+                }
+
+                var credentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey);
+                var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
+
+                _dynamoDbClient = new AmazonDynamoDBClient(credentials, regionEndpoint);
+            }
+            else
+            {
+                _dynamoDbClient = dynamoDbClient;
             }
 
-            var credentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey);
-            var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
-
-            _dynamoDbClient = new AmazonDynamoDBClient(credentials, regionEndpoint);
             _clienteRepo = clienteRepo;
             _snsClient = snsClient;
             _snsTopicArn = snsTopicArn;
         }
+
 
         public async Task ProcessTransferencia(Transferencia transferencia)
         {
             try
             {
                 var contaOrigem = transferencia.IdContaOrigem;
-                var contaDestino = transferencia.IdContaOrigem;
+                var contaDestino = transferencia.IdContaDestino;
 
                 var origemItem = await _clienteRepo.GetClienteByAccountAsync(contaOrigem);
                 if (origemItem == null)
@@ -67,8 +75,8 @@ namespace BankTransferAPI.Services
                 origemItem.ValorEmConta -= transferencia.Valor;
                 destinoItem.ValorEmConta += transferencia.Valor;
 
-                await _clienteRepo.UpdateCliente(origemItem);
-                await _clienteRepo.UpdateCliente(destinoItem);
+                await _clienteRepo.UpdateClienteAsync(origemItem);
+                await _clienteRepo.UpdateClienteAsync(destinoItem);
 
                 var callback = new Callback
                 {

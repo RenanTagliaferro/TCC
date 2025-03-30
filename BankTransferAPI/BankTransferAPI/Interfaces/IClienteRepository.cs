@@ -10,6 +10,6 @@ namespace BankingApi.Repositories
     public interface IClienteRepository
     {
         Task<Cliente> GetClienteByAccountAsync(string conta);
-        Task<bool> UpdateCliente(Cliente cliente);
+        Task<bool> UpdateClienteAsync(Cliente cliente);
     }
 }

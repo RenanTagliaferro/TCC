@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTransferAPI", "BankTransferAPI\BankTransferAPI.csproj", "{2A1DF741-A34F-461B-842F-07DA61688F30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTrasferAPITest", "BankTrasferAPITest\BankTrasferAPITest.csproj", "{59ABDDC8-9B43-4D8D-82F3-CD98F22A4E44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2A1DF741-A34F-461B-842F-07DA61688F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A1DF741-A34F-461B-842F-07DA61688F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A1DF741-A34F-461B-842F-07DA61688F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59ABDDC8-9B43-4D8D-82F3-CD98F22A4E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59ABDDC8-9B43-4D8D-82F3-CD98F22A4E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59ABDDC8-9B43-4D8D-82F3-CD98F22A4E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59ABDDC8-9B43-4D8D-82F3-CD98F22A4E44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,5 @@
 ﻿using Amazon.Lambda.Core;
 using Amazon.Lambda.SNSEvents;
-using Amazon.Lambda.Serialization.Json;
-using BankingApi.Services; // Your service namespace
-using System.Threading.Tasks;
 using BankingApi.Models;
 using Newtonsoft.Json;
 using BankTransferAPI.Interfaces;

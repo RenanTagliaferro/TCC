@@ -35,3 +35,6 @@ C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransfer
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\AWSSDK.DynamoDBv2.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\DotNetEnv.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\Sprache.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\Amazon.Lambda.Core.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\Amazon.Lambda.SNSEvents.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\AWSSDK.SimpleNotificationService.dll
