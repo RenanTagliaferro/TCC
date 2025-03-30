@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="9.0.4" />
     <PackageReference Include="Amazon.Lambda.Core" Version="2.5.1" />
     <PackageReference Include="Amazon.Lambda.SNSEvents" Version="2.1.0" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.406.1" />

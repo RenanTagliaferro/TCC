@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[3.7.400.118, )"
             },
+            "Amazon.Lambda.AspNetCoreServer": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
             "Amazon.Lambda.Core": {
               "target": "Package",
               "version": "[2.5.1, )"

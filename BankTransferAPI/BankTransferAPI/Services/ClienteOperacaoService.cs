@@ -16,7 +16,7 @@ namespace BankTransferAPI.Services
     {
         private readonly IClienteRepository _clienteRepo;
         private readonly IAmazonSimpleNotificationService _snsClient;
-        private readonly string _snsTopicArn = "";
+        private readonly string _snsTopicArn ="arn:aws:sns:us-east-1:515966496719:topic-callback";
         private readonly AmazonDynamoDBClient _dynamoDbClient;
 
         public ClienteOperacaoService(

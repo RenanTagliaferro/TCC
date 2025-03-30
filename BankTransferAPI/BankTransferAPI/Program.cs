@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using BankingApi.Services;
 using BankTransferAPI.Interfaces;
-using BankingApi.Repositories;
-using Amazon.DynamoDBv2;
-using Amazon.SimpleNotificationService;
 using BankTransferAPI.Repositories;
+using BankingApi.Repositories;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BankingApi
 {
@@ -21,47 +19,45 @@ namespace BankingApi
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-        .ConfigureServices((context, services) =>
-        {
-            services.AddControllers();
-            services.AddTransient<ITransferService, TransferenciaBancariaService>();
-            services.AddTransient<ITransferRepository, TransferRepository>();
-            services.AddTransient<IClienteRepository, ClienteRepository>();
-            services.AddControllers().AddApplicationPart(typeof(ClienteController).Assembly);
-
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(options =>
-            {
-                options.EnableAnnotations();
-                options.SwaggerDoc("v1", new OpenApiInfo
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) =>
                 {
-                    Title = "Banking API",
-                    Version = "v1",
-                    Description = "Predo Caixa Pequena",
-                });
-            });
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.Configure(app =>
-            {
-                // Swagger first
-                app.UseSwagger();
+                    services.AddControllers();
+                    services.AddTransient<ITransferService, TransferenciaBancariaService>();
+                    services.AddTransient<ITransferRepository, TransferRepository>();
+                    services.AddTransient<IClienteRepository, ClienteRepository>();
+                    services.AddControllers().AddApplicationPart(typeof(TransferenciaController).Assembly);
 
-                app.UseSwaggerUI(c =>
+                    services.AddEndpointsApiExplorer();
+                    services.AddSwaggerGen(options =>
+                    {
+                        options.EnableAnnotations();
+                        options.SwaggerDoc("v1", new OpenApiInfo
+                        {
+                            Title = "Banking API",
+                            Version = "v1",
+                            Description = "Predo Caixa Pequena",
+                        });
+                    });
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking API v1");
-                    c.RoutePrefix = string.Empty; 
-                });
-                app.UseRouting();
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                });
-            });
-        });
+                    webBuilder.Configure(app =>
+                    {
+                        // Swagger first
+                        app.UseSwagger();
 
-
+                        app.UseSwaggerUI(c =>
+                        {
+                            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking API v1");
+                            c.RoutePrefix = string.Empty;
+                        });
+                        app.UseRouting();
+                        app.UseEndpoints(endpoints =>
+                        {
+                            endpoints.MapControllers();
+                        });
+                    });
+                });
     }
 }
