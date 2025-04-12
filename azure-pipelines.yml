@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  name: 'SelfHostedAgentTcc'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Etapa do UseDotNet'
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+    includePreviewVersions: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'Buildando solution'
+  inputs:
+    command: 'build'
+    projects: '**/*.sln'
+    arguments: '--configuration Release'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Rodando testes de unidade'
+  inputs:
+    command: 'test'
+    projects: '**/*Test.csproj'
+    arguments: '--configuration Release'
