@@ -1,3 +1,4 @@
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\appsettings.json
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\BankTransferAPI
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\BankTransferAPI.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\BankTransferAPI.deps.json

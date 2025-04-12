@@ -31,6 +31,7 @@ namespace BankingApi
                 Region = RegionEndpoint.USEast1
             });
             services.AddAWSService<IAmazonDynamoDB>();
+            services.AddAWSService<AmazonDynamoDBClient>();
             services.AddAWSService<IAmazonSimpleNotificationService>();
 
             // Injecting snsTopicArn from configuration
