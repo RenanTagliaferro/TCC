@@ -17,14 +17,13 @@ namespace BankingApi.Repositories
 
         public async Task<Cliente> GetClienteByAccountAsync(string conta)
         {
-
             var scanRequest = new ScanRequest
             {
-                TableName = "cliente",  
-                FilterExpression = "SK = :skValue",
+                TableName = "cliente",
+                FilterExpression = "conta = :contaValue", // Correct the field name to "conta"
                 ExpressionAttributeValues = new Dictionary<string, AttributeValue>
                 {
-                    { ":skValue", new AttributeValue { S = conta } }
+                    { ":contaValue", new AttributeValue { S = conta } }
                 }
             };
 
@@ -37,9 +36,9 @@ namespace BankingApi.Repositories
                 var cliente = new Cliente
                 {
                     Id = int.Parse(firstItem["PK"].S),
-                    Nome = firstItem["Nome"].S,
-                    Conta = firstItem["Conta"].S,
-                    ValorEmConta = decimal.Parse(firstItem["valor"].N)
+                    Nome = firstItem["nome"].S,      
+                    Conta = firstItem["conta"].S,      
+                    ValorEmConta = decimal.Parse(firstItem["ValorEmConta"].N)
                 };
 
                 return cliente;
@@ -51,13 +50,13 @@ namespace BankingApi.Repositories
         {
             var updateRequest = new UpdateItemRequest
             {
-                TableName = "YourTableName",
+                TableName = "cliente",  // Correct the table name if necessary
                 Key = new Dictionary<string, AttributeValue>
                 {
                     { "PK", new AttributeValue { N = cliente.Id.ToString() } },
-                    { "SK", new AttributeValue { S = cliente.Conta } }
+                    { "conta", new AttributeValue { S = cliente.Conta } }
                 },
-                UpdateExpression = "SET nome = :nome, valor = :valorEmConta",
+                UpdateExpression = "SET nome = :nome, ValorEmConta = :valorEmConta",
                 ExpressionAttributeValues = new Dictionary<string, AttributeValue>
                 {
                     { ":nome", new AttributeValue { S = cliente.Nome } },
