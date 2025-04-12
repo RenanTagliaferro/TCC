@@ -47,3 +47,4 @@ C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransfer
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\AWS.Logger.Core.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\AWSSDK.CloudWatchLogs.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\AWSSDK.Extensions.NETCore.Setup.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Debug\net8.0\appsettings.json

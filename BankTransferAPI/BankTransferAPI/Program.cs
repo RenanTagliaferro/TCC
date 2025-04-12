@@ -19,7 +19,7 @@ namespace BankingApi
                     webBuilder.ConfigureLogging((context, logging) =>
                     {
                         logging.ClearProviders();
-                        logging.AddAWSProvider(); // Adds AWS CloudWatch logging
+                        logging.AddAWSProvider();
                     });
 
                     webBuilder.UseStartup<Startup>();

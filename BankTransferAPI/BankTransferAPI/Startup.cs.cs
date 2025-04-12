@@ -1,6 +1,7 @@
 ﻿using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.Extensions.NETCore.Setup;
+using Amazon.SimpleNotificationService;
 using BankingApi.Repositories;
 using BankingApi.Services;
 using BankTransferAPI.Interfaces;
@@ -30,8 +31,13 @@ namespace BankingApi
                 Region = RegionEndpoint.USEast1
             });
             services.AddAWSService<IAmazonDynamoDB>();
-            services.AddAWSService<AmazonDynamoDBClient>();
+            services.AddAWSService<IAmazonSimpleNotificationService>();
 
+            // Injecting snsTopicArn from configuration
+            string snsTopicArn = _configuration["SNS:TopicArn"];
+            services.AddSingleton(snsTopicArn);
+
+            // Register services and repositories
             services.AddControllers();
             services.AddTransient<ITransferService, TransferenciaBancariaService>();
             services.AddTransient<ITransferRepository, TransferRepository>();
