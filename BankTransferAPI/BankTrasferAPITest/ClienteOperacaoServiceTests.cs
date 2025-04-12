@@ -9,6 +9,7 @@ using BankTransferAPI.Models;
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using BankingApi.Models;
+using Microsoft.Extensions.Logging;
 
 namespace BankTransferAPITests
 {
@@ -16,20 +17,22 @@ namespace BankTransferAPITests
     {
         private Mock<IClienteRepository> _clienteRepoMock;
         private Mock<IAmazonSimpleNotificationService> _snsClientMock;
-        private ClienteOperacaoService _service;
         private AmazonDynamoDBClient _dynamoDbClient;
+        private ClienteOperacaoService _service;
+        private Mock<ILogger<ClienteOperacaoService>> _loggerMock;
 
         [SetUp]
         public void Setup()
         {
             _clienteRepoMock = new Mock<IClienteRepository>();
             _snsClientMock = new Mock<IAmazonSimpleNotificationService>();
+            _loggerMock = new Mock<ILogger<ClienteOperacaoService>>();
 
             var credentials = new BasicAWSCredentials("fake-access-key", "fake-secret-key");
             var region = Amazon.RegionEndpoint.USEast1;
             _dynamoDbClient = new AmazonDynamoDBClient(credentials, region);
 
-            _service = new ClienteOperacaoService(_dynamoDbClient, _clienteRepoMock.Object, _snsClientMock.Object, "test-topic-arn");
+            _service = new ClienteOperacaoService(_dynamoDbClient, _clienteRepoMock.Object, _snsClientMock.Object, "test-topic-arn", _loggerMock.Object);
         }
 
         [TearDown]
