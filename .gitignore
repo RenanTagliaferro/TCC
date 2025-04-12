@@ -2,10 +2,18 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/BankTransferAPI/.vs/BankTransferAPI
+**/bin/
+**/obj/
+.vs/
 /BankTransferAPI/BankTransferAPI/Enviroment.env
 /BankTransferAPI/BankTransferAPI/.env
+/BankTransferAPI/BankTransferAPI/bin
+/BankTransferAPI/BankTransferAPI/obj
 /BankTransferAPI/BankTransferAPI/credentials.env
-/BankTransferAPI/BankTransferAPI/bin/Debug/net8.0/BankTransferAPI.dll
-/BankTransferAPI/BankTransferAPI/bin/Debug/net8.0/BankTransferAPI.exe
-/BankTransferAPI/BankTransferAPI/bin/Debug/net8.0/BankTransferAPI.pdb
+/BankTransferAPI/BankTransferAPI/publish
+
+/BankTransferAPI/BankTransferUI/bin
+/BankTransferAPI/BankTransferUI/obj
+
+/BankTransferAPI/BankTransferAPITest/bin
+/BankTransferAPI/BankTransferAPITest/obj
