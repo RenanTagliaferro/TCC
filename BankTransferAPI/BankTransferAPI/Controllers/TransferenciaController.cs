@@ -20,10 +20,13 @@ public class TransferenciaController : ControllerBase
     }
 
     [HttpGet("transferencia")]
-    public ActionResult<Transferencia> Transferencia([FromQuery] string contaOrigem, string contaDestinatario, decimal valor)
+    public async Task<ActionResult<Transferencia>> Transferencia(
+     [FromQuery] string contaOrigem,
+     [FromQuery] string contaDestinatario,
+     [FromQuery] decimal valor)
     {
         _logger.LogInformation("iniciando transferencia");
-        var transferencia = _transferService.FazerTransferencia( contaOrigem, contaDestinatario,valor);
+        var transferencia = await _transferService.FazerTransferencia(contaOrigem, contaDestinatario, valor);
         return Ok(transferencia);
     }
 }

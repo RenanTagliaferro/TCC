@@ -1,9 +1,11 @@
-﻿using Amazon.Lambda.Core;
+﻿using Amazon.DynamoDBv2;
+using Amazon.Lambda.Core;
 using Amazon.Lambda.SNSEvents;
+using Amazon.SimpleNotificationService;
 using BankingApi.Models;
+using BankingApi.Repositories;
+using BankTransferAPI.Services;
 using Newtonsoft.Json;
-using BankTransferAPI.Interfaces;
-using System;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -11,15 +13,23 @@ namespace BankingApi.LambdaHandlers
 {
     public class SnsMessageHandler
     {
-        private readonly IClienteOperacaoService _clientOperacaoService;
-
-        public SnsMessageHandler(IClienteOperacaoService clientOperacaoService)
-        {
-            _clientOperacaoService = clientOperacaoService;
-        }
-
         public async Task FunctionHandler(SNSEvent snsEvent, ILambdaContext context)
         {
+            var region = Amazon.RegionEndpoint.USEast1;
+
+            var dynamoDbClient = new AmazonDynamoDBClient(region);
+            var snsClient = new AmazonSimpleNotificationServiceClient(region);
+            var clienteRepo = new ClienteRepository(dynamoDbClient);
+
+            string snsTopicArn = "arn:aws:sns:us-east-1:515966496719:topic-callback";
+
+            var clienteOperacaoService = new ClienteOperacaoService(
+                dynamoDbClient,
+                clienteRepo,
+                snsClient,
+                snsTopicArn
+            );
+
             foreach (var record in snsEvent.Records)
             {
                 try
@@ -35,7 +45,7 @@ namespace BankingApi.LambdaHandlers
                         continue;
                     }
 
-                    await _clientOperacaoService.ProcessTransferencia(transferencia);
+                    await clienteOperacaoService.ProcessTransferencia(transferencia);
                 }
                 catch (Exception ex)
                 {
