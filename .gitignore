@@ -6,3 +6,6 @@
 /BankTransferAPI/BankTransferAPI/Enviroment.env
 /BankTransferAPI/BankTransferAPI/.env
 /BankTransferAPI/BankTransferAPI/credentials.env
+/BankTransferAPI/BankTransferAPI/bin/Debug/net8.0/BankTransferAPI.dll
+/BankTransferAPI/BankTransferAPI/bin/Debug/net8.0/BankTransferAPI.exe
+/BankTransferAPI/BankTransferAPI/bin/Debug/net8.0/BankTransferAPI.pdb
