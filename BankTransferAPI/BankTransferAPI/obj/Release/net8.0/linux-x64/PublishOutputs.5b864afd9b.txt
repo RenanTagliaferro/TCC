@@ -10,6 +10,9 @@ C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransfer
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\Amazon.Lambda.Logging.AspNetCore.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\Amazon.Lambda.SNSEvents.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\AWS.Logger.AspNetCore.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\AWS.Logger.Core.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\AWSSDK.CloudWatchLogs.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\AWSSDK.Core.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\AWSSDK.DynamoDBv2.dll
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\publish\AWSSDK.SimpleNotificationService.dll

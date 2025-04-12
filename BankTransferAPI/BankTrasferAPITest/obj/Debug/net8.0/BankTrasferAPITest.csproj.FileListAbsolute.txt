@@ -128,3 +128,11 @@ C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransfer
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\obj\Debug\net8.0\BankTrasferAPITest.pdb
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\obj\Debug\net8.0\BankTrasferAPITest.genruntimeconfig.cache
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\obj\Debug\net8.0\ref\BankTrasferAPITest.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\Amazon.Lambda.APIGatewayEvents.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\Amazon.Lambda.ApplicationLoadBalancerEvents.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\Amazon.Lambda.AspNetCoreServer.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\Amazon.Lambda.Logging.AspNetCore.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\AWS.Logger.AspNetCore.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\AWS.Logger.Core.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTrasferAPITest\bin\Debug\net8.0\AWSSDK.CloudWatchLogs.dll

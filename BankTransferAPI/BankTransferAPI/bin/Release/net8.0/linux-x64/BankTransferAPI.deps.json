@@ -9,6 +9,7 @@
     ".NETCoreApp,Version=v8.0/linux-x64": {
       "BankTransferAPI/1.0.0": {
         "dependencies": {
+          "AWS.Logger.AspNetCore": "3.5.3",
           "AWSSDK.DynamoDBv2": "3.7.406.1",
           "AWSSDK.SimpleNotificationService": "3.7.400.118",
           "Amazon.Lambda.AspNetCoreServer": "9.0.4",
@@ -94,6 +95,42 @@
           "lib/net8.0/Amazon.Lambda.SNSEvents.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AWS.Logger.AspNetCore/3.5.3": {
+        "dependencies": {
+          "AWS.Logger.Core": "3.3.3",
+          "Microsoft.Extensions.Configuration": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.1",
+          "Microsoft.Extensions.Logging": "2.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWS.Logger.AspNetCore.dll": {
+            "assemblyVersion": "3.5.3.0",
+            "fileVersion": "3.5.3.0"
+          }
+        }
+      },
+      "AWS.Logger.Core/3.3.3": {
+        "dependencies": {
+          "AWSSDK.CloudWatchLogs": "3.7.305.15"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWS.Logger.Core.dll": {
+            "assemblyVersion": "3.3.3.0",
+            "fileVersion": "3.3.3.0"
+          }
+        }
+      },
+      "AWSSDK.CloudWatchLogs/3.7.305.15": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.402.24"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.CloudWatchLogs.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.305.15"
           }
         }
       },
@@ -1473,6 +1510,27 @@
       "sha512": "sha512-w2PKM5eQ6DNCR07H6SwHdcPXAr/qKQhNoAD+8bWydpgh4QdS2O4heo9vxhxn1g5FMSKeOxVa2zMKUZ9xeSYPZw==",
       "path": "amazon.lambda.snsevents/2.1.0",
       "hashPath": "amazon.lambda.snsevents.2.1.0.nupkg.sha512"
+    },
+    "AWS.Logger.AspNetCore/3.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rCMUHIdehxqcqUcwTNPpg298itn/ZRJrzyBffq6InRom1x5Hf2zw3kIK5SRx0B+Ve5kMGGRf1mYoWbQIHHcwvg==",
+      "path": "aws.logger.aspnetcore/3.5.3",
+      "hashPath": "aws.logger.aspnetcore.3.5.3.nupkg.sha512"
+    },
+    "AWS.Logger.Core/3.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JEXjiwIwAws5YJZDVwSqUoZIjMxsAuaZOQFZfLk6lYTg9NLrFY1dHafy6qifz/8ZQSlBiuSs+MAAHlBqHF9Cfw==",
+      "path": "aws.logger.core/3.3.3",
+      "hashPath": "aws.logger.core.3.3.3.nupkg.sha512"
+    },
+    "AWSSDK.CloudWatchLogs/3.7.305.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-03WeLYddEIWnZEmfY4r1D9+tUYnpizF49Tnit0gyXP4vO8dlOIpE/FLaAF1JCbsQ0Rnh/QUV0d1o3YXXCFFsMw==",
+      "path": "awssdk.cloudwatchlogs/3.7.305.15",
+      "hashPath": "awssdk.cloudwatchlogs.3.7.305.15.nupkg.sha512"
     },
     "AWSSDK.Core/3.7.402.24": {
       "type": "package",

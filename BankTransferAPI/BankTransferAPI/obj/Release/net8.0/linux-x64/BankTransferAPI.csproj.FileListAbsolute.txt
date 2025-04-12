@@ -43,3 +43,6 @@ C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransfer
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\obj\Release\net8.0\linux-x64\BankTransferAPI.pdb
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\obj\Release\net8.0\linux-x64\BankTransferAPI.genruntimeconfig.cache
 C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\obj\Release\net8.0\linux-x64\ref\BankTransferAPI.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Release\net8.0\linux-x64\AWS.Logger.AspNetCore.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Release\net8.0\linux-x64\AWS.Logger.Core.dll
+C:\Users\renan\Desktop\CompSci\Mackenzie\TCC\Transferencia Bancaria\BankTransferAPI\BankTransferAPI\bin\Release\net8.0\linux-x64\AWSSDK.CloudWatchLogs.dll

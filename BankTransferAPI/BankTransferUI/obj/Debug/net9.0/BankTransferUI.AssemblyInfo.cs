@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankTransferUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23b088ca21e43bb9627a363d5519c780b39d0875")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+057273150b5e06ac62e995559bbbd1b64f37c218")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankTransferUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankTransferUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

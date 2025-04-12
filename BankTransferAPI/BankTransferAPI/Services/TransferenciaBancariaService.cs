@@ -6,6 +6,7 @@ using BankTransferAPI.Interfaces;
 using Amazon.SimpleNotificationService.Model;
 using System.Text.Json;
 using Amazon.SimpleNotificationService;
+using Microsoft.Extensions.Logging;
 
 namespace BankingApi.Services
 {
@@ -15,13 +16,16 @@ namespace BankingApi.Services
         private readonly ITransferRepository _transferRepo;
         private readonly IAmazonSimpleNotificationService _snsClient;
         private readonly string _snsTopicArn = "arn:aws:sns:us-east-1:515966496719:topic-transfer";
+        private readonly ILogger<TransferenciaController> _logger;
+
 
 
         public TransferenciaBancariaService(
             ITransferRepository transferRepo,
             AmazonDynamoDBClient dynamoDbClient,
             IAmazonSimpleNotificationService snsClient,
-            string snsTopicArn)
+            string snsTopicArn,
+            ILogger<TransferenciaController> logger)
         {
             #if DEBUG
                 Env.Load(@"..\..\..\credentials.env");
@@ -43,6 +47,7 @@ namespace BankingApi.Services
             _transferRepo = transferRepo;
             _snsClient = snsClient;
             _snsTopicArn = snsTopicArn;
+            _logger = logger;  
         }
 
         public async Task<Transferencia> FazerTransferencia(string contaOrigem,string contaDestinatario,decimal valor)
@@ -54,7 +59,6 @@ namespace BankingApi.Services
 
             var transferID = Guid.NewGuid().ToString();
             var sk = string.Concat(contaOrigem,"-", contaDestinatario);
-
             var transfer = new Transferencia
             {
                 PK = transferID,
@@ -64,10 +68,13 @@ namespace BankingApi.Services
                 IdContaOrigem = contaDestinatario
             };
 
+            _logger.LogInformation($"iniciado escrita da transferencia da conta {contaOrigem} para a conta {contaDestinatario}");
             await _transferRepo.WriteTransferAsync(transfer);
+            _logger.LogInformation($"finalizado escrita da transferencia da conta {contaOrigem} para a conta {contaDestinatario}" +
+                $", iniciando publish SNS");
 
             await PublishToSns(transfer);
-
+            _logger.LogInformation("finalizada publicação no SNS");
             return transfer;
         }
         private async Task PublishToSns(Transferencia transferencia)

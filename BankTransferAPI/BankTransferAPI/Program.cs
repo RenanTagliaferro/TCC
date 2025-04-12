@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using AWS.Logger.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BankingApi
 {
@@ -14,6 +16,12 @@ namespace BankingApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureLogging((context, logging) =>
+                    {
+                        logging.ClearProviders();
+                        logging.AddAWSProvider(); // Adds AWS CloudWatch logging
+                    });
+
                     webBuilder.UseStartup<Startup>();
                 });
     }

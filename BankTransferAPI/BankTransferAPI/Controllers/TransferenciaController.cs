@@ -1,22 +1,28 @@
+using Amazon.Runtime.Internal.Util;
 using BankingApi.Models;
 using BankingApi.Services;
 using BankTransferAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 [ApiController]
-[Route("banking")]
+[Route("")]
 public class TransferenciaController : ControllerBase
 {
     private readonly ITransferService _transferService;
+    private readonly ILogger<TransferenciaController> _logger;
 
-    public TransferenciaController(ITransferService transferService)
+
+    public TransferenciaController(ITransferService transferService, ILogger<TransferenciaController> logger)
     {
         _transferService = transferService;
+        _logger = logger;
     }
 
     [HttpGet("transferencia")]
     public ActionResult<Transferencia> Transferencia([FromQuery] string contaOrigem, string contaDestinatario, decimal valor)
     {
+        _logger.LogInformation("iniciando transferencia");
         var transferencia = _transferService.FazerTransferencia( contaOrigem, contaDestinatario,valor);
         return Ok(transferencia);
     }

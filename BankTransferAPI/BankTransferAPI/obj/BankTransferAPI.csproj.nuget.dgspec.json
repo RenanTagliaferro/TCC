@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AWS.Logger.AspNetCore": {
+              "target": "Package",
+              "version": "[3.5.3, )"
+            },
             "AWSSDK.DynamoDBv2": {
               "target": "Package",
               "version": "[3.7.406.1, )"

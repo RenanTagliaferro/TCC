@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "etw1mAOKYY0=",
+  "dgSpecHash": "82R2Rj4wXN4=",
   "success": true,
   "projectFilePath": "C:\\Users\\renan\\Desktop\\CompSci\\Mackenzie\\TCC\\Transferencia Bancaria\\BankTransferAPI\\BankTransferAPI\\BankTransferAPI.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,9 @@
     "C:\\Users\\renan\\.nuget\\packages\\amazon.lambda.logging.aspnetcore\\3.1.1\\amazon.lambda.logging.aspnetcore.3.1.1.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\amazon.lambda.serialization.systemtextjson\\2.4.4\\amazon.lambda.serialization.systemtextjson.2.4.4.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\amazon.lambda.snsevents\\2.1.0\\amazon.lambda.snsevents.2.1.0.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\aws.logger.aspnetcore\\3.5.3\\aws.logger.aspnetcore.3.5.3.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\aws.logger.core\\3.3.3\\aws.logger.core.3.3.3.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\awssdk.cloudwatchlogs\\3.7.305.15\\awssdk.cloudwatchlogs.3.7.305.15.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.core\\3.7.402.24\\awssdk.core.3.7.402.24.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.406.1\\awssdk.dynamodbv2.3.7.406.1.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.simplenotificationservice\\3.7.400.118\\awssdk.simplenotificationservice.3.7.400.118.nupkg.sha512",
