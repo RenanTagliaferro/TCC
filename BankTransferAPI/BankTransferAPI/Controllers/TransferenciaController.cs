@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("banking")]
-public class ClienteController : ControllerBase
+public class TransferenciaController : ControllerBase
 {
     private readonly ITransferService _transferService;
 
-    public ClienteController(ITransferService transferService)
+    public TransferenciaController(ITransferService transferService)
     {
         _transferService = transferService;
     }

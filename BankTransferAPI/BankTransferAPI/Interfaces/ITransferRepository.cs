@@ -9,7 +9,7 @@ namespace BankTransferAPI.Interfaces
 {
     public interface ITransferRepository
     {
-        Task WriteTransferAsync(Transferencia transferencia);  // Write to DynamoDB
-        Task<Transferencia> ReadTransferAsync(string pk, string sk);  // Read from DynamoDB
+        Task WriteTransferAsync(Transferencia transferencia);  
+        Task<Transferencia> ReadTransferAsync(string pk, string sk); 
     }
 }

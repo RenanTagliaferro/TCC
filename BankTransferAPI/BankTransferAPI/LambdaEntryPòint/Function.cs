@@ -8,7 +8,7 @@ namespace BankingApi.Lambda
     {
         protected override void Init(IWebHostBuilder builder)
         {
-            builder.UseStartup<Program>();
+            builder.UseStartup<Startup>();
         }
     }
 }

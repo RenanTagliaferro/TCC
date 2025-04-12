@@ -27,7 +27,6 @@ namespace BankingApi.LambdaHandlers
                     var snsMessage = record.Sns.Message;
                     context.Logger.LogLine($"Recebeu SNS message: {snsMessage}");
 
-                    // Deserialize the SNS message into Transferencia object
                     var transferencia = JsonConvert.DeserializeObject<Transferencia>(snsMessage);
 
                     if (transferencia == null)
@@ -36,14 +35,11 @@ namespace BankingApi.LambdaHandlers
                         continue;
                     }
 
-                    // Call the service method to process the transferencia
                     await _clientOperacaoService.ProcessTransferencia(transferencia);
                 }
                 catch (Exception ex)
                 {
                     context.Logger.LogLine($"Error ao processar SNS message: {ex.Message}");
-                    // Optionally, you can throw the exception to indicate a failure
-                    // or handle retries if necessary.
                 }
             }
         }

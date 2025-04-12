@@ -15,7 +15,6 @@ namespace BankingApi.Repositories
             _clienteTable = Table.LoadTable(_dynamoDbClient, "cliente");
         }
 
-        // Implement the interface method to retrieve a cliente
         public async Task<Cliente> GetClienteByAccountAsync(string conta)
         {
 
