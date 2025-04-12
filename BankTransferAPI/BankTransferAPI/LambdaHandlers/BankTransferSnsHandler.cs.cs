@@ -4,6 +4,7 @@ using Amazon.Lambda.SNSEvents;
 using Amazon.SimpleNotificationService;
 using BankingApi.Models;
 using BankingApi.Repositories;
+using BankTransferAPI.Interfaces;
 using BankTransferAPI.Services;
 using Newtonsoft.Json;
 
@@ -11,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace BankingApi.LambdaHandlers
 {
-    public class SnsMessageHandler
+    public class LambdaEntryPoint
     {
         public async Task FunctionHandler(SNSEvent snsEvent, ILambdaContext context)
         {
@@ -30,6 +31,23 @@ namespace BankingApi.LambdaHandlers
                 snsTopicArn
             );
 
+            var snsMessageHandler = new SnsMessageHandler(clienteOperacaoService);
+
+            await snsMessageHandler.FunctionHandler(snsEvent, context);
+        }
+    }
+
+    public class SnsMessageHandler
+    {
+        private readonly ClienteOperacaoService _clienteOperacaoService;
+
+        public SnsMessageHandler(ClienteOperacaoService clienteOperacaoService)
+        {
+            _clienteOperacaoService = clienteOperacaoService;
+        }
+
+        public async Task FunctionHandler(SNSEvent snsEvent, ILambdaContext context)
+        {
             foreach (var record in snsEvent.Records)
             {
                 try
@@ -45,7 +63,7 @@ namespace BankingApi.LambdaHandlers
                         continue;
                     }
 
-                    await clienteOperacaoService.ProcessTransferencia(transferencia);
+                    await _clienteOperacaoService.ProcessTransferencia(transferencia);
                 }
                 catch (Exception ex)
                 {
