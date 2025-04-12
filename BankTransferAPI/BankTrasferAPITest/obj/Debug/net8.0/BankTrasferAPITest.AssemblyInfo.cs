@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankTrasferAPITest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+057273150b5e06ac62e995559bbbd1b64f37c218")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2480d55fcaf3adfb867ae1a18f7d254008928a6f")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankTrasferAPITest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankTrasferAPITest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

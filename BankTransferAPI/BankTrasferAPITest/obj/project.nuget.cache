@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "go9f1dD/ZMk=",
+  "dgSpecHash": "+5oA0GKp4VQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\renan\\Desktop\\CompSci\\Mackenzie\\TCC\\Transferencia Bancaria\\BankTransferAPI\\BankTrasferAPITest\\BankTrasferAPITest.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.cloudwatchlogs\\3.7.305.15\\awssdk.cloudwatchlogs.3.7.305.15.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.core\\3.7.402.24\\awssdk.core.3.7.402.24.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.406.1\\awssdk.dynamodbv2.3.7.406.1.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.400\\awssdk.extensions.netcore.setup.3.7.400.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\awssdk.simplenotificationservice\\3.7.400.118\\awssdk.simplenotificationservice.3.7.400.118.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\bogus\\35.6.2\\bogus.35.6.2.nupkg.sha512",
     "C:\\Users\\renan\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
