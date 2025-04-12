@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BankTransferUI.c058awpseo.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XCXwDIJqoeNgiOHdpQCRTOuwbnQXjOiwwSTUiVn5dfY="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1132"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XCXwDIJqoeNgiOHdpQCRTOuwbnQXjOiwwSTUiVn5dfY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 12 Apr 2025 17:06:57 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1132"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XCXwDIJqoeNgiOHdpQCRTOuwbnQXjOiwwSTUiVn5dfY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 12 Apr 2025 17:15:37 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BankTransferUI/BankTransferUI.c058awpseo.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BankTransferUI.c058awpseo.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"c058awpseo"},{"Name":"integrity","Value":"sha256-XCXwDIJqoeNgiOHdpQCRTOuwbnQXjOiwwSTUiVn5dfY="},{"Name":"label","Value":"_content/BankTransferUI/BankTransferUI.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1132"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XCXwDIJqoeNgiOHdpQCRTOuwbnQXjOiwwSTUiVn5dfY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 12 Apr 2025 17:06:57 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1132"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XCXwDIJqoeNgiOHdpQCRTOuwbnQXjOiwwSTUiVn5dfY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 12 Apr 2025 17:15:37 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BankTransferUI/css/site.b9sayid5wm.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

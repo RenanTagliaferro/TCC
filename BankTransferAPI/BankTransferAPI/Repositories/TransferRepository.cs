@@ -2,10 +2,6 @@
 using Amazon.DynamoDBv2;
 using BankingApi.Models;
 using BankTransferAPI.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DocumentModel;
 
@@ -13,10 +9,10 @@ namespace BankTransferAPI.Repositories
 {
     public class TransferRepository : ITransferRepository
     {
-        private readonly AmazonDynamoDBClient _dynamoDbClient;
+        private readonly IAmazonDynamoDB _dynamoDbClient;
         private readonly Table _transferenciaTable;
 
-        public TransferRepository(AmazonDynamoDBClient dynamoDbClient)
+        public TransferRepository(IAmazonDynamoDB dynamoDbClient)
         {
             _dynamoDbClient = dynamoDbClient;
             _transferenciaTable = Table.LoadTable(_dynamoDbClient, "transferencia");
@@ -39,8 +35,7 @@ namespace BankTransferAPI.Repositories
             var document = await _transferenciaTable.GetItemAsync(pk, sk);
 
             if (document == null)
-                return null; 
-
+                return null;
 
             return new Transferencia
             {

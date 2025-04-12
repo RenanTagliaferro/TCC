@@ -1,4 +1,5 @@
-﻿using Amazon.DynamoDBv2;
+﻿using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.Extensions.NETCore.Setup;
 using BankingApi.Repositories;
 using BankingApi.Services;
@@ -24,9 +25,12 @@ namespace BankingApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDefaultAWSOptions(_configuration.GetAWSOptions());
+            services.AddDefaultAWSOptions(new AWSOptions
+            {
+                Region = RegionEndpoint.USEast1
+            });
             services.AddAWSService<IAmazonDynamoDB>();
+            services.AddAWSService<AmazonDynamoDBClient>();
 
             services.AddControllers();
             services.AddTransient<ITransferService, TransferenciaBancariaService>();

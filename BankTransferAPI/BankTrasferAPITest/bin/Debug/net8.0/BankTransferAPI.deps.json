@@ -10,6 +10,7 @@
         "dependencies": {
           "AWS.Logger.AspNetCore": "3.5.3",
           "AWSSDK.DynamoDBv2": "3.7.406.1",
+          "AWSSDK.Extensions.NETCore.Setup": "3.7.400",
           "AWSSDK.SimpleNotificationService": "3.7.400.118",
           "Amazon.Lambda.AspNetCoreServer": "9.0.4",
           "Amazon.Lambda.Core": "2.5.1",
@@ -149,6 +150,20 @@
           "lib/net8.0/AWSSDK.DynamoDBv2.dll": {
             "assemblyVersion": "3.3.0.0",
             "fileVersion": "3.7.406.1"
+          }
+        }
+      },
+      "AWSSDK.Extensions.NETCore.Setup/3.7.400": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.402.24",
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Extensions.NETCore.Setup.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.400.0"
           }
         }
       },
@@ -1340,6 +1355,13 @@
       "sha512": "sha512-ALB8Q1f9TiXDpfXrSSt3+EkpJR0DTD7UC8EwrUKyCF1QVQff1ChvbSQLbHmRIoCgE2MG2X10c7GRiS+KNAS33A==",
       "path": "awssdk.dynamodbv2/3.7.406.1",
       "hashPath": "awssdk.dynamodbv2.3.7.406.1.nupkg.sha512"
+    },
+    "AWSSDK.Extensions.NETCore.Setup/3.7.400": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i4ta6n+QuGKt1RBCIbRU2wohz5DYJ+wRPR9EI7YkzC8eaWSbmMXTNL+s4HpYUsoxM7uyUrYoW0gC52/9KnK7xw==",
+      "path": "awssdk.extensions.netcore.setup/3.7.400",
+      "hashPath": "awssdk.extensions.netcore.setup.3.7.400.nupkg.sha512"
     },
     "AWSSDK.SimpleNotificationService/3.7.400.118": {
       "type": "package",
