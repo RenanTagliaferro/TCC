@@ -12,24 +12,22 @@ namespace BankingApi.Services
 {
     public class TransferenciaBancariaService : ITransferService
     {
-        private readonly AmazonDynamoDBClient _dynamoDbClient;
+        private readonly IAmazonDynamoDB _dynamoDbClient;
         private readonly ITransferRepository _transferRepo;
         private readonly IAmazonSimpleNotificationService _snsClient;
         private readonly string _snsTopicArn = "arn:aws:sns:us-east-1:515966496719:topic-transfer";
         private readonly ILogger<TransferenciaController> _logger;
 
-
-
         public TransferenciaBancariaService(
             ITransferRepository transferRepo,
-            AmazonDynamoDBClient dynamoDbClient,
+            IAmazonDynamoDB dynamoDbClient,
             IAmazonSimpleNotificationService snsClient,
             string snsTopicArn,
             ILogger<TransferenciaController> logger)
         {
-            #if DEBUG
-                Env.Load(@"..\..\..\credentials.env");
-            #endif
+#if DEBUG
+            Env.Load(@"..\..\..\credentials.env");
+#endif
 
             var awsAccessKeyId = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
             var awsSecretAccessKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
@@ -43,11 +41,11 @@ namespace BankingApi.Services
             var credentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey);
             var regionEndpoint = Amazon.RegionEndpoint.GetBySystemName(region);
 
-            _dynamoDbClient = new AmazonDynamoDBClient(credentials, regionEndpoint);
+            _dynamoDbClient = dynamoDbClient;  
             _transferRepo = transferRepo;
             _snsClient = snsClient;
             _snsTopicArn = snsTopicArn;
-            _logger = logger;  
+            _logger = logger;
         }
 
         public async Task<Transferencia> FazerTransferencia(string contaOrigem,string contaDestinatario,decimal valor)
