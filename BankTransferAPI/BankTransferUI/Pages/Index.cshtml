@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Transferência";
+}
+
+<h2>Transferência Bancária</h2>
+
+<form method="post">
+    <div>
+        <label>Conta Origem:</label>
+        <input type="text" name="ContaOrigem" value="@Model.ContaOrigem" />
+    </div>
+    <div>
+        <label>Conta Destinatario:</label>
+        <input type="text" name="ContaDestinatario" value="@Model.ContaDestinatario" />
+    </div>
+    <div>
+        <label>Valor:</label>
+        <input type="number" step="0.01" name="Valor" value="@Model.Valor" />
+    </div>
+    <button type="submit">Transferir</button>
+</form>
+
+@if (Model.Resultado != null)
+{
+    <h3>Resposta da API:</h3>
+    <pre>@Model.Resultado</pre>
+}

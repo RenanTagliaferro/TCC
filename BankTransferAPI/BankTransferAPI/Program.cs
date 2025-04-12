@@ -26,7 +26,7 @@ namespace BankingApi
                     services.AddTransient<ITransferService, TransferenciaBancariaService>();
                     services.AddTransient<ITransferRepository, TransferRepository>();
                     services.AddTransient<IClienteRepository, ClienteRepository>();
-                    services.AddControllers().AddApplicationPart(typeof(TransferenciaController).Assembly);
+                    services.AddControllers().AddApplicationPart(typeof(ClienteController).Assembly);
 
                     services.AddEndpointsApiExplorer();
                     services.AddSwaggerGen(options =>

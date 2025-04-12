@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QlbuxePgY6U=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\renan\\Desktop\\CompSci\\Mackenzie\\TCC\\Transferencia Bancaria\\BankTransferAPI\\BankTransferUI\\BankTransferUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\renan\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\9.0.2\\microsoft.netcore.app.host.linux-x64.9.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
