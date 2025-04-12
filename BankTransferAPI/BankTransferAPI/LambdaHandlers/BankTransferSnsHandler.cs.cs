@@ -4,8 +4,8 @@ using Amazon.Lambda.SNSEvents;
 using Amazon.SimpleNotificationService;
 using BankingApi.Models;
 using BankingApi.Repositories;
-using BankTransferAPI.Interfaces;
 using BankTransferAPI.Services;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -20,15 +20,26 @@ namespace BankingApi.LambdaHandlers
 
             var dynamoDbClient = new AmazonDynamoDBClient(region);
             var snsClient = new AmazonSimpleNotificationServiceClient(region);
-            var clienteRepo = new ClienteRepository(dynamoDbClient);
-
             string snsTopicArn = "arn:aws:sns:us-east-1:515966496719:topic-callback";
+
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information)
+                    .AddLambdaLogger();
+            });
+
+            var loggerService = loggerFactory.CreateLogger<ClienteOperacaoService>();
+            var loggerRepo = loggerFactory.CreateLogger<TransferenciaController>();
+
+            var clienteRepo = new ClienteRepository(dynamoDbClient, loggerRepo);
 
             var clienteOperacaoService = new ClienteOperacaoService(
                 dynamoDbClient,
                 clienteRepo,
                 snsClient,
-                snsTopicArn
+                snsTopicArn,
+                loggerService
             );
 
             var snsMessageHandler = new SnsMessageHandler(clienteOperacaoService);
